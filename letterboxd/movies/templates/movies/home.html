@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Movies{% endblock %}
+
+{% block content %}
+    <div class="flex justify-center mt-8">
+        <form method="get" class="text-white">
+            <label for="order_by" class="mr-2">Order by:</label>
+            <select name="order_by" id="order_by" class="text-black mr-2">
+                <option value="name" {% if order_by == 'name' %}selected{% endif %}>Title</option>
+                <option value="age" {% if order_by == 'age' %}selected{% endif %}>Release Year</option>
+            </select>
+            <button type="submit" class="bg-green-500 px-2 py-1 rounded">Sort</button>
+        </form>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8 mb-16">
+        {% for movie in movies %}
+            <div class="relative">
+                <a href="{% url 'movie_detail' movie.id%}">
+                        <img src="{{ movie.imageUrl }}" alt="{{ movie.name }}" class="w-full h-72 object-cover rounded-lg">
+                    <div class="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity hover:filter flex items-center justify-center flex-col">
+                        <p class="text-white font-bold text-lg bg-gray-800 px-1 py-1 rounded-lg" >{{ movie.name }}</p>
+                        <p class="text-white font-medium text-sm bg-gray-900 px-1 py-1 rounded-lg">{{movie.director}}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

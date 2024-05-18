@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="mt-8 max-w-md mx-auto">
+        <form method="post" class="p-8">
+        {% csrf_token %}
+        
+        <div class="mb-4">
+            <label for="id_username" class="block text-white text-sm font-bold mb-2">Username:</label>
+            <input type="text" id="id_username" name="username" class="w-full p-2 border rounded-md" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="id_email" class="block text-white text-sm font-bold mb-2">Email:</label>
+            <input type="email" id="id_email" name="email" class="w-full p-2 border rounded-md" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="id_password1" class="block text-white text-sm font-bold mb-2">Password:</label>
+            <input type="password" id="id_password1" name="password1" class="w-full p-2 border rounded-md" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="id_password2" class="block text-white text-sm font-bold mb-2">Confirm Password:</label>
+            <input type="password" id="id_password2" name="password2" class="w-full p-2 border rounded-md" required>
+        </div>
+
+        <div class="mb-4">
+            <input type="checkbox" id="id_is_superuser" name="is_superuser" class="form-check-input">
+            <label for="id_is_superuser" class="text-white text-sm">Superuser (for adding movies)</label>
+          </div>
+
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-md">Register</button>
+        <a href="{% url 'home' %}" type="submit" class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-800 transition duration-200">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

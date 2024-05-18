@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Movie{% endblock %}
+
+{% block content %}
+<div class="mt-8">
+    <h1 class="text-3xl font-bold mb-6 text-center text-white">Add a New Movie</h1>
+
+    <form class="max-w-lg mx-auto" method="post" action="{% url 'add_movie' %}">
+        {% csrf_token %}
+
+        <div class="mb-4">
+            <label for="imageUrl" class="block text-sm font-bold mb-2 text-white">Image URL:</label>
+            <input type="url" id="imageUrl" name="imageUrl" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" placeholder="Enter image URL">
+        </div>
+
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-bold mb-2 text-white">Name:</label>
+            <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" placeholder="Enter movie name">
+        </div>
+
+        <div class="mb-4">
+            <label for="description" class="block text-sm font-bold mb-2 text-white">Description:</label>
+            <textarea id="description" name="description" rows="4" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" placeholder="Enter movie description"></textarea>
+        </div>
+
+        <div class="mb-4">
+            <label for="age" class="block text-sm font-bold mb-2 text-white">Age:</label>
+            <input type="number" id="age" name="age" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" placeholder="Enter age of realease">
+        </div>
+
+        <div class="mb-4">
+            <label for="director" class="block text-sm font-bold mb-2 text-white">Director:</label>
+            <input type="text" id="director" name="director" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" placeholder="Enter movie director">
+        </div>
+
+        <div class="mb-4">
+            <label for="genre" class="block text-sm font-bold mb-2 text-white">Genre:</label>
+            <input type="text" id="genre" name="genre" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500" placeholder="Enter movie genre">
+        </div>
+
+        <div class="mb-4">
+            <button type="submit" class="bg-green-500 px-4 py-2 rounded text-white hover:bg-green-800 transition duration-200">Add Movie</button>
+            <a href="{% url 'home' %}" type="submit" class="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-800 transition duration-200">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

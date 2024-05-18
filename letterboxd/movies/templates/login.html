@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <div class="mt-8 max-w-md mx-auto">
+    <form method="post" class="p-8">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label for="id_username" class="block text-white text-sm font-bold mb-2">Username:</label>
+        <input type="text" id="id_username" name="username" class="w-full p-2 border rounded-md" required>
+      </div>
+
+      <div class="mb-4">
+        <label for="id_password" class="block text-white text-sm font-bold mb-2">Password:</label>
+        <input type="password" id="id_password" name="password" class="w-full p-2 border rounded-md" required>
+      </div>
+
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }} text-red-500 mb-5"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+      <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-800 transition duration-200">Login</button>
+      <a href="{% url 'register' %}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-800 transition duration-200">Register Instead</a>
+    </form>
+  </div>
+{% endblock %}
